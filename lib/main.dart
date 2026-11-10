@@ -32,6 +32,8 @@ class profile extends StatelessWidget {
       appBar: AppBar(
         title: Text('ilham budi handika'),
         centerTitle: true,
+        backgroundColor: Colors.brown,
+        foregroundColor: Colors.white,
         actions: [
           IconButton(onPressed: (){
             ScaffoldMessenger.of(context).showSnackBar(
@@ -44,6 +46,33 @@ class profile extends StatelessWidget {
         ],
 
       ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(padding: EdgeInsets.all(10),
+          child: Center(
+            child: Column(
+              children: [
+                CircleAvatar(
+                  radius: 20,
+                  child: Icon(Icons.person),
+                ),
+                SizedBox(
+                  height: 18,
+                )
+              ],
+            ),
+          ),
+          ),
+          
+        )),
+        floatingActionButton: FloatingActionButton(onPressed: (){
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('tambah')));
+            
+        },
+        child: Icon(Icons.add),
+        tooltip: 'tambah',
+        ),
     );
   }
 }
