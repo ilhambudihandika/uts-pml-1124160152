@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'profil_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,6 +11,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -78,16 +81,32 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Form berhasil divalidasi'),
-                            ),
-                          );
-                        }
-                      },
-                      child: const Text('Login'),
+                      onPressed: isLoading
+                          ? null
+                          : () async {
+                              if (_formKey.currentState!.validate()) {
+                                setState(() {
+                                  isLoading = true;
+                                });
+
+                                await Future.delayed(
+                                  const Duration(seconds: 2),
+                                );
+
+                                if (!mounted) return;
+
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ProfilPage(),
+                                  ),
+                                );
+                              }
+                            },
+                      child: isLoading
+                          ? const CircularProgressIndicator()
+                          : const Text('Login'),
                     ),
                   ),
                 ],
