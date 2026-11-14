@@ -9,6 +9,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,58 +23,75 @@ class _LoginPageState extends State<LoginPage> {
           width: 350,
           child: Padding(
             padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(
-                  Icons.school,
-                  size: 60,
-                ),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.school, size: 60),
+                  const SizedBox(height: 15),
 
-                const SizedBox(height: 15),
-
-                const Text(
-                  'Selamat Datang',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                  const Text(
+                    'Selamat Datang',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
 
-                const SizedBox(height: 10),
+                  const SizedBox(height: 10),
+                  const Text('Silakan login terlebih dahulu'),
+                  const SizedBox(height: 25),
 
-                const Text('Silakan login terlebih dahulu'),
-
-                const SizedBox(height: 25),
-
-                const TextField(
-                  decoration: InputDecoration(
-                    labelText: 'NIM',
-                    border: OutlineInputBorder(),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'NIM',
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'NIM tidak boleh kosong';
+                      }
+                      return null;
+                    },
                   ),
-                ),
 
-                const SizedBox(height: 15),
+                  const SizedBox(height: 15),
 
-                const TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    border: OutlineInputBorder(),
+                  TextFormField(
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      labelText: 'Password',
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Password tidak boleh kosong';
+                      }
+                      return null;
+                    },
                   ),
-                ),
 
-                const SizedBox(height: 20),
+                  const SizedBox(height: 20),
 
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('Login'),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Form berhasil divalidasi'),
+                            ),
+                          );
+                        }
+                      },
+                      child: const Text('Login'),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
