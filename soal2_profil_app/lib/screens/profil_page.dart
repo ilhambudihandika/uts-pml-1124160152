@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
-import '../widgets/info_tile.dart';
 import 'edit_profil_page.dart';
+import 'about_page.dart';
+import '../widgets/info_tile.dart';
 
 class ProfilPage extends StatefulWidget {
   const ProfilPage({super.key});
@@ -12,8 +13,12 @@ class ProfilPage extends StatefulWidget {
 
 class _ProfilPageState extends State<ProfilPage> {
   String nama = 'Ilham Budi Handika';
-  String email = 'ilhamhandika@gmail.com';
+  String email = 'ilhamhandika27@gmail.com';
   String noHp = '081517729430';
+
+  final String nim = '1124160152';
+  final String prodi = 'Teknik Informatika';
+  final String kelas = 'TI 24 SE 1';
 
   Future<void> editProfil() async {
     final hasil = await Navigator.push<Map<String, String>>(
@@ -27,15 +32,22 @@ class _ProfilPageState extends State<ProfilPage> {
       ),
     );
 
-    if (!mounted) return;
-
     if (hasil != null) {
       setState(() {
-        nama = hasil['nama']!;
-        email = hasil['email']!;
-        noHp = hasil['noHp']!;
+        nama = hasil['nama'] ?? nama;
+        email = hasil['email'] ?? email;
+        noHp = hasil['noHp'] ?? noHp;
       });
     }
+  }
+
+  void bukaTentangSaya() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const AboutPage(),
+      ),
+    );
   }
 
   @override
@@ -43,7 +55,6 @@ class _ProfilPageState extends State<ProfilPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profil Mahasiswa'),
-        centerTitle: true,
         actions: [
           IconButton(
             onPressed: editProfil,
@@ -51,77 +62,79 @@ class _ProfilPageState extends State<ProfilPage> {
           ),
         ],
       ),
-
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              const CircleAvatar(
-                radius: 55,
-                child: Icon(
-                  Icons.person,
-                  size: 65,
-                ),
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            const CircleAvatar(
+              radius: 55,
+              backgroundImage: AssetImage(
+                'assets/images/foto_profil.jpg',
               ),
+            ),
+            const SizedBox(height: 16),
 
-              const SizedBox(height: 15),
-
-              Text(
-                nama,
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
+            Text(
+              nama,
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
               ),
+            ),
 
-              const Text('1124160152'),
-              const Text('Teknik Informatika'),
-              const Text('TI 24 SE 1'),
+            Text('NIM: $nim'),
+            Text(prodi),
+            Text(kelas),
 
-              const SizedBox(height: 10),
+            const SizedBox(height: 20),
 
-              const Text(
-                'Saya adalah mahasiswa yang sedang belajar '
-                'pemrograman dan pengembangan aplikasi mobile.',
-                textAlign: TextAlign.center,
+            const Text(
+              'Mahasiswa Teknik Informatika',
+              textAlign: TextAlign.center,
+            ),
+
+            const SizedBox(height: 20),
+
+            Card(
+              child: Column(
+                children: [
+                  InfoTile(
+                    icon: Icons.email,
+                    label: 'Email',
+                    value: email,
+                  ),
+                  InfoTile(
+                    icon: Icons.phone,
+                    label: 'No. HP',
+                    value: noHp,
+                  ),
+                  const InfoTile(
+                    icon: Icons.code,
+                    label: 'GitHub',
+                    value: 'github.com/ilhambudihandika',
+                  ),
+                ],
               ),
+            ),
 
-              const SizedBox(height: 20),
+            const SizedBox(height: 16),
 
-              Card(
-                child: Column(
-                  children: [
-                    InfoTile(
-                      icon: Icons.email,
-                      label: 'Email',
-                      value: email,
-                    ),
-
-                    InfoTile(
-                      icon: Icons.phone,
-                      label: 'Nomor HP',
-                      value: noHp,
-                    ),
-
-                    const InfoTile(
-                      icon: Icons.code,
-                      label: 'GitHub',
-                      value: 'github.com/ilhambudihandika',
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 15),
-
-              ElevatedButton.icon(
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
                 onPressed: editProfil,
-                icon: const Icon(Icons.edit),
-                label: const Text('Edit Profil'),
+                child: const Text('Edit Profil'),
               ),
-            ],
-          ),
+            ),
+
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: bukaTentangSaya,
+                child: const Text('Tentang Saya'),
+              ),
+            ),
+          ],
         ),
       ),
     );
