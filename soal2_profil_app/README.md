@@ -11,7 +11,8 @@ Aplikasi Profil Mahasiswa dibuat menggunakan Flutter untuk memenuhi tugas UTS ma
 
 ## Link Video Presentasi
 
-**YouTube:** [[Masukkan link video YouTube di sini](https://youtube.com/)](https://youtu.be/_7JlR-VlIQo?si=teb_gsOSPKq1_zNk)
+**YouTube:** https://youtu.be/_7JlR-VlIQo?si=teb_gsOSPKq1_zNk
+
 
 ## Fitur Aplikasi
 
