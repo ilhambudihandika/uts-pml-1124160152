@@ -16,12 +16,17 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   bool darkMode = false;
 
+  void ubahTema() {
+    setState(() {
+      darkMode = !darkMode;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Profil Mahasiswa',
       debugShowCheckedModeBanner: false,
-
       themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
 
       theme: ThemeData(
@@ -43,13 +48,12 @@ class _MyAppState extends State<MyApp> {
       home: Builder(
         builder: (context) {
           return Scaffold(
-            body: const LoginPage(),
+            body: LoginPage(
+              onUbahTema: ubahTema,
+              darkMode: darkMode,
+            ),
             floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                setState(() {
-                  darkMode = !darkMode;
-                });
-              },
+              onPressed: ubahTema,
               child: Icon(
                 darkMode ? Icons.light_mode : Icons.dark_mode,
               ),

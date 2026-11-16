@@ -3,9 +3,17 @@ import 'package:flutter/material.dart';
 import 'edit_profil_page.dart';
 import 'about_page.dart';
 import '../widgets/info_tile.dart';
+import 'login_page.dart';
 
 class ProfilPage extends StatefulWidget {
-  const ProfilPage({super.key});
+  final VoidCallback? onUbahTema;
+  final bool darkMode;
+
+  const ProfilPage({
+    super.key,
+    this.onUbahTema,
+    this.darkMode = false,
+  });
 
   @override
   State<ProfilPage> createState() => _ProfilPageState();
@@ -50,6 +58,16 @@ class _ProfilPageState extends State<ProfilPage> {
     );
   }
 
+  void logout() {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginPage(),
+      ),
+      (route) => false,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +80,73 @@ class _ProfilPageState extends State<ProfilPage> {
           ),
         ],
       ),
+
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text(nama),
+              accountEmail: Text(email),
+              currentAccountPicture: const CircleAvatar(
+                backgroundImage: AssetImage(
+                  'assets/images/foto_profil.jpg',
+                ),
+              ),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Profil Mahasiswa'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.edit),
+              title: const Text('Edit Profil'),
+              onTap: () {
+                Navigator.pop(context);
+                editProfil();
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('Tentang Saya'),
+              onTap: () {
+                Navigator.pop(context);
+                bukaTentangSaya();
+              },
+            ),
+
+            const Divider(),
+
+            SwitchListTile(
+              secondary: const Icon(Icons.dark_mode),
+              title: const Text('Dark Mode'),
+              value: widget.darkMode,
+              onChanged: (value) {
+                Navigator.pop(context);
+                widget.onUbahTema?.call();
+              },
+            ),
+
+            const Divider(),
+
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Logout'),
+              onTap: logout,
+            ),
+          ],
+        ),
+      ),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
