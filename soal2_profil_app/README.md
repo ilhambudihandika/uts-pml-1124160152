@@ -1,4 +1,6 @@
-# UTS PEMROGRAMAN MOBILE
+# Aplikasi Profil Mahasiswa
+
+Aplikasi Profil Mahasiswa dibuat menggunakan Flutter untuk memenuhi tugas UTS mata kuliah Pemrograman Mobile.
 
 ## Identitas Mahasiswa
 
@@ -7,68 +9,48 @@
 - **Program Studi:** Teknik Informatika
 - **Kelas:** TI 24 SE 1
 
-## Deskripsi
+## Link Video Presentasi
 
-Aplikasi Profil Mahasiswa merupakan aplikasi mobile yang dibuat menggunakan Flutter dan bahasa pemrograman Dart. Aplikasi ini dibuat untuk memenuhi tugas Ujian Tengah Semester mata kuliah Pemrograman Mobile.
-
-Aplikasi ini digunakan untuk menampilkan informasi mahasiswa dan menyediakan beberapa fitur untuk mengelola profil.
+**YouTube:** [[Masukkan link video YouTube di sini](https://youtube.com/)](https://youtu.be/_7JlR-VlIQo?si=teb_gsOSPKq1_zNk)
 
 ## Fitur Aplikasi
 
-1. Login mahasiswa dengan validasi NIM dan password.
-2. Menampilkan foto dan informasi profil mahasiswa.
-3. Mengedit nama, email, dan nomor HP.
-4. Validasi data saat mengedit profil.
-5. Menampilkan halaman Tentang Saya.
-6. Menampilkan keahlian, hobi, dan riwayat pendidikan.
-7. Mengubah tampilan Light Mode dan Dark Mode.
+1. Login menggunakan NIM dan password.
+2. Menampilkan informasi profil mahasiswa.
+3. Mengedit data profil mahasiswa.
+4. Menampilkan halaman About Me.
+5. Menampilkan informasi kemampuan, hobi, dan pendidikan.
+6. Mengubah tampilan Light Mode dan Dark Mode.
 
-## Screenshot Aplikasi
+## Tampilan Aplikasi
 
 ### 1. Halaman Login
 
-<img width="1080" height="2400" alt="WhatsApp Image 2026-11-16 at 23 03 05 (2)" src="https://github.com/user-attachments/assets/9ff8e674-b9a3-4811-88af-c1fa28eb5152" />
+<img width="1080" height="2400" alt="WhatsApp Image 2026-11-16 at 23 03 05 (2)" src="https://github.com/user-attachments/assets/0d56e082-3fa1-45b2-9d84-3060c53747d6" />
 
 
-### 2. Halaman Profil Mahasiswa
+### 2. Halaman Profil
 
-<img width="720" height="1600" alt="WhatsApp Image 2026-11-16 at 23 03 06" src="https://github.com/user-attachments/assets/649dac40-bb74-4159-b7c7-bede8a928101" />
+<img width="720" height="1600" alt="WhatsApp Image 2026-11-16 at 23 03 06" src="https://github.com/user-attachments/assets/e8ea0fc0-2cd6-4a71-9de0-cd236c881677" />
+
 
 
 ### 3. Halaman Edit Profil
 
-<img width="1080" height="2400" alt="WhatsApp Image 2026-11-16 at 23 03 05" src="https://github.com/user-attachments/assets/9ced0b5e-8ac6-46c8-bd81-cc39ae200586" />
+<img width="720" height="1600" alt="WhatsApp Image 2026-11-17 at 01 55 25" src="https://github.com/user-attachments/assets/8b4b70eb-09ab-4eb8-854d-5ca2e34b5c6d" />
 
 
-
-### 4. Halaman Tentang Saya
-
-<img width="720" height="1600" alt="WhatsApp Image 2026-11-16 at 23 03 05 (1)" src="https://github.com/user-attachments/assets/910956fb-1bc9-4173-80ed-57673148f665" />
-
-
-## Teknologi yang Digunakan
+## Teknologi
 
 - Flutter
 - Dart
 - Visual Studio Code
-- Android Studio
-- Git dan GitHub
 
 ## Cara Menjalankan Aplikasi
 
-1. Clone repository:
-
-```bash
-git clone https://github.com/ilhambudihandika/uts-pml-1124160152.git
-```
-
-2. Masuk ke folder aplikasi:
-
-```bash
-cd uts-pml-1124160152/soal2_profil_app
-```
-
-3. Ambil dependencies:
+1. Clone repository ini.
+2. Buka folder project di Visual Studio Code.
+3. Jalankan perintah:
 
 ```bash
 flutter pub get
@@ -80,22 +62,22 @@ flutter pub get
 flutter run
 ```
 
-## Download Aplikasi
+## Build APK
 
-APK versi release dapat diunduh melalui GitHub Releases berikut:
+Untuk membuat aplikasi versi release, jalankan:
 
-[Download APK Profil Mahasiswa v1.0.0](https://github.com/ilhambudihandika/uts-pml-1124160152/releases/tag/v1.0.0)
+```bash
+flutter build apk --release
+```
 
-## Video Presentasi
+File APK dapat ditemukan di:
 
-Link video demo dan penjelasan aplikasi:
+```text
+build/app/outputs/flutter-apk/app-release.apk
+```
 
-**Link YouTube:** ISI_LINK_VIDEO_YOUTUBE
+## Repository
 
-## Repository GitHub
+Source code aplikasi tersedia di GitHub:
 
 https://github.com/ilhambudihandika/uts-pml-1124160152
-
----
-
-Dibuat oleh Ilham Budi Handika untuk memenuhi tugas UTS Pemrograman Mobile.
