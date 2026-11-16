@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 import 'profil_page.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final VoidCallback? onUbahTema;
+  final bool darkMode;
+
+  const LoginPage({
+    super.key,
+    this.onUbahTema,
+    this.darkMode = false,
+  });
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -35,7 +42,10 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const ProfilPage(),
+          builder: (context) => ProfilPage(
+            onUbahTema: widget.onUbahTema,
+            darkMode: widget.darkMode,
+          ),
         ),
       );
     } else {

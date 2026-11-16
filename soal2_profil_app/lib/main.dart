@@ -45,21 +45,17 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
 
-      home: Builder(
-        builder: (context) {
-          return Scaffold(
-            body: LoginPage(
-              onUbahTema: ubahTema,
-              darkMode: darkMode,
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: ubahTema,
-              child: Icon(
-                darkMode ? Icons.light_mode : Icons.dark_mode,
-              ),
-            ),
-          );
-        },
+      home: Scaffold(
+        body: LoginPage(
+          onUbahTema: ubahTema,
+          darkMode: darkMode,
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: ubahTema,
+          child: Icon(
+            darkMode ? Icons.light_mode : Icons.dark_mode,
+          ),
+        ),
       ),
     );
   }

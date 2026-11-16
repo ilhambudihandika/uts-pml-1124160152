@@ -23,10 +23,26 @@ class _ProfilPageState extends State<ProfilPage> {
   String nama = 'Ilham Budi Handika';
   String email = 'ilhamhandika27@gmail.com';
   String noHp = '081517729430';
+  String nim = '1124160152';
+  String prodi = 'Teknik Informatika';
+  String kelas = 'TI 24 SE 1';
 
-  final String nim = '1124160152';
-  final String prodi = 'Teknik Informatika';
-  final String kelas = 'TI 24 SE 1';
+  String dartDesc = 'Belajar bahasa pemrograman Dart';
+  String flutterDesc = 'Belajar membuat aplikasi mobile';
+  String membacaDesc = 'Hobi membaca dan belajar hal baru';
+
+  String sd = 'SDN PANUNGGANGAN 10';
+  String smp = 'SMP NEGERI 23';
+  String smk = 'SMK NEGERI 4 KOTA TANGERANG';
+  String kuliah = 'Global Institute - Teknik Informatika';
+
+  late bool darkMode;
+
+  @override
+  void initState() {
+    super.initState();
+    darkMode = widget.darkMode;
+  }
 
   Future<void> editProfil() async {
     final hasil = await Navigator.push<Map<String, String>>(
@@ -36,6 +52,16 @@ class _ProfilPageState extends State<ProfilPage> {
           nama: nama,
           email: email,
           noHp: noHp,
+          nim: nim,
+          prodi: prodi,
+          kelas: kelas,
+          dartDesc: dartDesc,
+          flutterDesc: flutterDesc,
+          membacaDesc: membacaDesc,
+          sd: sd,
+          smp: smp,
+          smk: smk,
+          kuliah: kuliah,
         ),
       ),
     );
@@ -45,6 +71,18 @@ class _ProfilPageState extends State<ProfilPage> {
         nama = hasil['nama'] ?? nama;
         email = hasil['email'] ?? email;
         noHp = hasil['noHp'] ?? noHp;
+        nim = hasil['nim'] ?? nim;
+        prodi = hasil['prodi'] ?? prodi;
+        kelas = hasil['kelas'] ?? kelas;
+
+        dartDesc = hasil['dartDesc'] ?? dartDesc;
+        flutterDesc = hasil['flutterDesc'] ?? flutterDesc;
+        membacaDesc = hasil['membacaDesc'] ?? membacaDesc;
+
+        sd = hasil['sd'] ?? sd;
+        smp = hasil['smp'] ?? smp;
+        smk = hasil['smk'] ?? smk;
+        kuliah = hasil['kuliah'] ?? kuliah;
       });
     }
   }
@@ -53,16 +91,35 @@ class _ProfilPageState extends State<ProfilPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const AboutPage(),
+        builder: (context) => AboutPage(
+          dartDesc: dartDesc,
+          flutterDesc: flutterDesc,
+          membacaDesc: membacaDesc,
+          sd: sd,
+          smp: smp,
+          smk: smk,
+          kuliah: kuliah,
+        ),
       ),
     );
+  }
+
+  void ubahPengaturanTema(bool value) {
+    setState(() {
+      darkMode = value;
+    });
+
+    widget.onUbahTema?.call();
   }
 
   void logout() {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
-        builder: (context) => const LoginPage(),
+        builder: (context) => LoginPage(
+          onUbahTema: widget.onUbahTema,
+          darkMode: darkMode,
+        ),
       ),
       (route) => false,
     );
@@ -93,19 +150,12 @@ class _ProfilPageState extends State<ProfilPage> {
                   'assets/images/foto_profil.jpg',
                 ),
               ),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-              ),
             ),
-
             ListTile(
               leading: const Icon(Icons.person),
               title: const Text('Profil Mahasiswa'),
-              onTap: () {
-                Navigator.pop(context);
-              },
+              onTap: () => Navigator.pop(context),
             ),
-
             ListTile(
               leading: const Icon(Icons.edit),
               title: const Text('Edit Profil'),
@@ -114,7 +164,6 @@ class _ProfilPageState extends State<ProfilPage> {
                 editProfil();
               },
             ),
-
             ListTile(
               leading: const Icon(Icons.info),
               title: const Text('Tentang Saya'),
@@ -123,21 +172,14 @@ class _ProfilPageState extends State<ProfilPage> {
                 bukaTentangSaya();
               },
             ),
-
             const Divider(),
-
             SwitchListTile(
               secondary: const Icon(Icons.dark_mode),
               title: const Text('Dark Mode'),
-              value: widget.darkMode,
-              onChanged: (value) {
-                Navigator.pop(context);
-                widget.onUbahTema?.call();
-              },
+              value: darkMode,
+              onChanged: ubahPengaturanTema,
             ),
-
             const Divider(),
-
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text('Logout'),

@@ -2,7 +2,24 @@
 import 'package:flutter/material.dart';
 
 class AboutPage extends StatelessWidget {
-  const AboutPage({super.key});
+  final String dartDesc;
+  final String flutterDesc;
+  final String membacaDesc;
+  final String sd;
+  final String smp;
+  final String smk;
+  final String kuliah;
+
+  const AboutPage({
+    super.key,
+    required this.dartDesc,
+    required this.flutterDesc,
+    required this.membacaDesc,
+    required this.sd,
+    required this.smp,
+    required this.smk,
+    required this.kuliah,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,23 +41,23 @@ class AboutPage extends StatelessWidget {
 
           const SizedBox(height: 10),
 
-          const Card(
+          Card(
             child: Column(
               children: [
                 ListTile(
-                  leading: Icon(Icons.code),
-                  title: Text('Dart'),
-                  subtitle: Text('Belajar bahasa pemrograman Dart'),
+                  leading: const Icon(Icons.code),
+                  title: const Text('Dart'),
+                  subtitle: Text(dartDesc),
                 ),
                 ListTile(
-                  leading: Icon(Icons.phone_android),
-                  title: Text('Flutter'),
-                  subtitle: Text('Belajar membuat aplikasi mobile'),
+                  leading: const Icon(Icons.phone_android),
+                  title: const Text('Flutter'),
+                  subtitle: Text(flutterDesc),
                 ),
                 ListTile(
-                  leading: Icon(Icons.menu_book),
-                  title: Text('Membaca'),
-                  subtitle: Text('Hobi membaca dan belajar hal baru'),
+                  leading: const Icon(Icons.menu_book),
+                  title: const Text('Membaca'),
+                  subtitle: Text(membacaDesc),
                 ),
               ],
             ),
@@ -58,28 +75,28 @@ class AboutPage extends StatelessWidget {
 
           const SizedBox(height: 10),
 
-          const Card(
+          Card(
             child: Column(
               children: [
                 ListTile(
-                  leading: Icon(Icons.school),
-                  title: Text('Sekolah Dasar'),
-                  subtitle: Text('SDN PANUNGGANGAN 10'),
+                  leading: const Icon(Icons.school),
+                  title: const Text('Sekolah Dasar'),
+                  subtitle: Text(sd),
                 ),
                 ListTile(
-                  leading: Icon(Icons.school),
-                  title: Text('SMP'),
-                  subtitle: Text('SMP NEGERI 23'),
+                  leading: const Icon(Icons.school),
+                  title: const Text('SMP'),
+                  subtitle: Text(smp),
                 ),
                 ListTile(
-                  leading: Icon(Icons.school),
-                  title: Text('SMA / SMK'),
-                  subtitle: Text('SMK NEGERI 4 KOTA TANGERANG'),
+                  leading: const Icon(Icons.school),
+                  title: const Text('SMA / SMK'),
+                  subtitle: Text(smk),
                 ),
                 ListTile(
-                  leading: Icon(Icons.school),
-                  title: Text('Perguruan Tinggi'),
-                  subtitle: Text('Global Institute - Teknik Informatika'),
+                  leading: const Icon(Icons.school),
+                  title: const Text('Perguruan Tinggi'),
+                  subtitle: Text(kuliah),
                 ),
               ],
             ),
